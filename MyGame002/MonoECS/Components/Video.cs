@@ -58,7 +58,6 @@ namespace MyGame002.MonoECS.Components
 
             }
             time += gameTime.ElapsedGameTime.Milliseconds;
-            Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "time.ToString()", new Vector2(0,0), Microsoft.Xna.Framework.Color.White, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
 
             //描画
             Game1.GetInstance()._spriteBatch.Draw(gameTexture,
