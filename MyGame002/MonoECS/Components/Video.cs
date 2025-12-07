@@ -102,6 +102,20 @@ namespace MyGame002.MonoECS.Components
             {
 
             }
+<<<<<<< HEAD
+=======
+            time += gameTime.ElapsedGameTime.Milliseconds;
+
+            //描画
+            Game1.GetInstance()._spriteBatch.Draw(gameTexture,
+                Game1.GetInstance().GetCenter(), //位置
+                new Rectangle(0, 0, (int)size.X, (int)size.Y), //ソース
+                Color.White,
+                (float)(Math.PI / 2) + rotation, //回転(90度回す)
+                new Vector2((int)size.X / 2, (int)size.Y / 2), //オフセット
+                1, //スケール
+                SpriteEffects.None, 0);
+>>>>>>> 5453aab23a37259449059ada5f856887138466e9
         }
         public void Dispose()
         {
