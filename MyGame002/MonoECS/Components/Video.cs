@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using OpenCvSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +21,58 @@ namespace MyGame002.MonoECS.Components
         Texture2D gameTexture;
         public void Draw(GameTime gameTime)
         {
+            if(gameTexture == null)
+            {
+                gameTexture = new Texture2D(Game1.GetInstance().GraphicsDevice, (int)size.X, (int)size.Y);
+            }
+            if (capture == null)
+            {
+                Logger.GetInstance().LogError("[VIDEO]capture is null");
+                return;
+            }
+            if(gameTexture == null)
+            {
+                Logger.GetInstance().LogError("[VIDEO]gameTexture is null");
+                return;
+            }
+            time += gameTime.ElapsedGameTime.Milliseconds;
+            //描画
+            Game1.GetInstance()._spriteBatch.Draw(gameTexture,
+                Game1.GetInstance().GetCenter(), //位置
+                new Rectangle(0, 0, (int)size.X, (int)size.Y), //ソース
+                Color.White,
+                (float)(Math.PI / 2) + rotation, //回転(90度回す)
+                new Vector2((int)size.X / 2, (int)size.Y / 2), //オフセット
+                1, //スケール
+                SpriteEffects.FlipVertically, 0);
+        }
 
+        public void Start()
+        {
+            
+        }
+        public void SetVideo(string path)
+        {
+            capture = new VideoCapture(path);
+            if(capture == null)
+            {
+                return;
+            }
+            size = new Vector2(capture.FrameHeight, capture.FrameWidth);
+        }
+        public void SetFPS(float fps)
+        {
+            this.fps = fps;
+        }
+        public void Update(GameTime gameTime)
+        {
             float timePassed = time - gameTime.ElapsedGameTime.Milliseconds;
             //monogameの色を作成
             Color[] data = new Color[(int)(size.X * size.Y)];
             //Cv2画像を作成
             Mat matframe = new Mat((int)size.X, (int)size.Y, MatType.CV_8UC3);
 
-            if (timePassed > 1/fps || timePassed == -1)
+            if (timePassed > 1000 / fps || timePassed == -1)
             {
                 capture.Grab();
                 if (capture.Read(matframe))
@@ -57,32 +102,10 @@ namespace MyGame002.MonoECS.Components
             {
 
             }
-            time += gameTime.ElapsedGameTime.Milliseconds;
-            Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "time.ToString()", new Vector2(0,0), Microsoft.Xna.Framework.Color.White, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
-
-            //描画
-            Game1.GetInstance()._spriteBatch.Draw(gameTexture,
-                Game1.GetInstance().GetCenter(), //位置
-                new Rectangle(0, 0, (int)size.X, (int)size.Y), //ソース
-                Color.White,
-                (float)(Math.PI / 2) + rotation, //回転(90度回す)
-                new Vector2((int)size.X / 2, (int)size.Y / 2), //オフセット
-                1, //スケール
-                SpriteEffects.None, 0);
         }
-
-        public void Start()
+        public void Dispose()
         {
-            capture = new VideoCapture(@"Video/Demo.mp4");
-            size = new Vector2(capture.FrameHeight, capture.FrameWidth);
-            gameTexture = new Texture2D(Game1.GetInstance().GraphicsDevice, (int)size.X, (int)size.Y);
-        }
-        public void SetFPS(float fps)
-        {
-            this.fps = fps;
-        }
-        public void Update(GameTime gameTime)
-        {
+            capture.Dispose();
         }
     }
 }

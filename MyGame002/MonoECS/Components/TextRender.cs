@@ -26,6 +26,10 @@ namespace MyGame002.MonoECS.Components
         {
             this.text = text;
         }
+        public string GetText()
+        {
+            return this.text;
+        }
         public void SetColor(Microsoft.Xna.Framework.Color color)
         {
             this.color = color;
@@ -51,6 +55,10 @@ namespace MyGame002.MonoECS.Components
         public void Start()
         {
             
+        }
+        public void Dispose()
+        {
+
         }
     }
 }

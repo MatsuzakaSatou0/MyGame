@@ -1,0 +1,1 @@
+protoc.exe Pb3_GameResource.proto --csharp_out ../MyGame002/Protobuf
