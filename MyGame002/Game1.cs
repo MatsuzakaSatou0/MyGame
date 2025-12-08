@@ -16,6 +16,10 @@ namespace MyGame002
             return _singleInstance;
         }
 
+        private bool developmentMode = false;
+
+        private float screenSizeMultiplier = 1f;
+
         public GraphicsDeviceManager _graphics;
 
         public SpriteBatch _spriteBatch;
@@ -24,18 +28,26 @@ namespace MyGame002
 
         private SpriteFont _font;
 
+        private ProgramManager programManager;
+
         GameBase gameBase;
 
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            programManager = new ProgramManager();
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
         protected override void BeginRun()
         {
             base.BeginRun();
+            if(IsDevelopmentMode())
+            {
+                DevelopMenu developMenu = new DevelopMenu();
+                developMenu.Show();
+            }
             foreach (Component component in gameBase.GetComponents())
             {
                 component.Start();
@@ -48,7 +60,7 @@ namespace MyGame002
             //画面設定
             //_graphics.ToggleFullScreen();
             _graphics.PreferredBackBufferWidth = 640;
-            _graphics.PreferredBackBufferHeight = 360;
+            _graphics.PreferredBackBufferHeight = 340;
             _graphics.ApplyChanges();
             base.Initialize();
         }
@@ -101,7 +113,6 @@ namespace MyGame002
             }
 
             Game1.GetInstance()._spriteBatch.End();
-
         }
         public void RegisterGame(GameBase gameBase)
         {
@@ -128,6 +139,25 @@ namespace MyGame002
         public void StartGame()
         {
             isStopping = false;
+        }
+        public float GetScreenSizeMulti()
+        {
+            return screenSizeMultiplier;
+        }
+        public void SetScreenSizeMulti(float value)
+        {
+            _graphics.PreferredBackBufferWidth = (int)(640 * screenSizeMultiplier);
+            _graphics.PreferredBackBufferHeight = (int)(360 * screenSizeMultiplier);
+            _graphics.ApplyChanges();
+            screenSizeMultiplier = value;
+        }
+        public bool IsDevelopmentMode()
+        {
+            return developmentMode;
+        }
+        public ProgramManager GetProgramManager()
+        {
+            return programManager;
         }
     }
 }

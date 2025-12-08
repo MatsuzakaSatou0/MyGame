@@ -26,8 +26,6 @@ namespace MyGame002
         }
         public void ErrorAction()
         {
-            lastMessage = "Unkown Error";
-            SystemSounds.Beep.Play();
             Game1.GetInstance().StopGame();
         }
         public string GetLastMessage()
@@ -38,8 +36,7 @@ namespace MyGame002
         public void ErrorAction(string message)
         {
             lastMessage = message;
-            SystemSounds.Beep.Play();
-            Game1.GetInstance().StopGame();
+            ErrorAction();
         }
     }
 }

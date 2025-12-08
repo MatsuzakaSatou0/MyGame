@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             errorLogBox = new System.Windows.Forms.RichTextBox();
-            SuspendLayout();
+            this.SuspendLayout();
             // 
             // errorLogBox
             // 
@@ -42,13 +42,13 @@
             // 
             // ErrorWindow
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(533, 370);
-            Controls.Add(errorLogBox);
-            Name = "ErrorWindow";
-            Text = "ErrorWindow";
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(533, 370);
+            this.Controls.Add(errorLogBox);
+            this.Name = "ErrorWindow";
+            this.Text = "ErrorWindow";
+            this.ResumeLayout(false);
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MyGame002.GameProgram.Developer;
 using MyGame002.MonoECS;
 using MyGame002.MonoECS.Components;
 using System;
@@ -20,9 +21,7 @@ namespace MyGame002.GameProgram.GameLauncher
         Video video;
         public void Draw(GameTime gameTime)
         {
-            //経過時間
-            t += gameTime.ElapsedGameTime.Milliseconds;
-            timeText.SetText(t.ToString());
+
         }
 
         public void Initialize()
@@ -32,7 +31,6 @@ namespace MyGame002.GameProgram.GameLauncher
 
         public void Start()
         {
-            timeText = entity.AddComponent(new TextRender(entity, 1, "", Color.White)) as TextRender;
             video = entity.AddComponent(new Video()) as Video;
             video.SetVideo("System/Video/Demo.mp4");
             video.SetFPS(30);
@@ -47,10 +45,9 @@ namespace MyGame002.GameProgram.GameLauncher
             //9000
             if(t >= 9000 || skipTitle)
             {
-                //MyGame002.Game1.GetInstance().RegisterGame(new GameIntro());
-                var launcher = new GameLauncher();
-                MyGame002.Game1.GetInstance().RegisterGame(launcher);
+                MyGame002.Game1.GetInstance().RegisterGame(new DevMenu());
             }
+            t += gameTime.ElapsedGameTime.Milliseconds;
         }
 
         List<Component> GameBase.GetComponents()

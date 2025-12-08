@@ -20,3 +20,10 @@
 /processorParam:TextureFormat=Compressed
 /build:anzmoji.spritefont
 
+#begin Misaki.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Misaki.spritefont
+
