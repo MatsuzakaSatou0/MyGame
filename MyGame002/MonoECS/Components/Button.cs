@@ -1,36 +1,38 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MyGame002.MonoCV;
+using OpenCvSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyGame002.MonoECS.Components
 {
-    public class Button
+    public class Button:TextureRender
     {
+        private Vector2 buttonSize;
         private Texture2D texture;
         Entity entity;
-        public Button(Entity entity, Texture2D texture)
+
+        public Button(Entity entity, Mat texture, Vector2 size) : base(entity, texture, size)
         {
-            this.texture = texture;
-        }
-        public void Draw(GameTime time)
-        {
-            Game1.GetInstance()._spriteBatch.Draw(texture, new Vector2(0, 0), Color.White);
+            this.entity = entity;
+            buttonSize = size;
         }
 
-        public void Start()
+        public override void Draw(GameTime time)
         {
-
+            if((Mouse.GetState().X <= entity.GetPosition().X || Mouse.GetState().Y <= entity.GetPosition().Y || Mouse.GetState().X >= buttonSize.X || Mouse.GetState().Y >= buttonSize.Y) == false)
+            {
+                OverCursor();
+            }
+            base.Draw(time);
         }
-
-        public void Update(GameTime time)
-        {
-
-        }
-        public void Dispose()
+        public virtual void OverCursor()
         {
 
         }

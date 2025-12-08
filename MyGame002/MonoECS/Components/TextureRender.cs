@@ -2,8 +2,12 @@
 using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Framework.Content.Pipeline.Builder;
+using MyGame002.MonoCV;
+using OpenCvSharp;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +18,23 @@ namespace MyGame002.MonoECS.Components
     {
         private Texture2D texture;
         Entity entity;
-        public TextureRender(Entity entity,Texture2D texture)
+        public TextureRender(Entity entity,Mat texture,Vector2 size)
         {
-            this.texture = texture;
+            this.entity = entity;
+            Cv2.Resize(texture, texture, new OpenCvSharp.Size(size.X, size.Y), 1.0, 1.0, InterpolationFlags.Cubic);
+            Cv2.Flip(texture, texture, FlipMode.XY);
+            this.texture = TextureUtil.MatToTexture2D(texture);
         }
-        public void Draw(GameTime time)
+        public virtual void Draw(GameTime time)
         {
-            Game1.GetInstance()._spriteBatch.Draw(texture, new Vector2(0, 0), Color.White);
+            Game1.GetInstance()._spriteBatch.Draw(texture,
+                entity.GetPosition()+ new Vector2((int)texture.Width / 2, (int)texture.Height / 2), //位置
+                new Microsoft.Xna.Framework.Rectangle(0, 0, (int)texture.Width, (int)texture.Height), //ソース
+                Microsoft.Xna.Framework.Color.White,
+                (float)(Math.PI) + 0, //回転(90度回す)
+                new Vector2((int)texture.Width / 2, (int)texture.Height / 2), //オフセット
+                1 * Game1.GetInstance().GetScreenSizeMulti(), //スケール
+                SpriteEffects.None, 0);
         }
 
         public void Start()

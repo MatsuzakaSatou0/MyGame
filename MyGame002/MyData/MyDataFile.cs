@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using Microsoft.Xna.Framework.Graphics;
+using OpenCvSharp;
 using SharpDX.DXGI;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,12 @@ namespace MyGame002.MyData
             textureData.Name = name;
             data.Textures.Add(textureData);
         }
-        public Dictionary<string,Texture2D> UnpackTextureData()
+        public Dictionary<string, Mat> UnpackTextureData()
         {
-            Dictionary<string, Texture2D> texture = new Dictionary<string, Texture2D>();
+            Dictionary<string, Mat> texture = new Dictionary<string, Mat>();
             foreach(TextureData textureData in data.Textures)
             {
-                texture.Add(textureData.Name,Texture2D.FromStream(Game1.GetInstance().GraphicsDevice,new MemoryStream(textureData.Data.ToByteArray())));
+                texture.Add(textureData.Name,Mat.FromStream(new MemoryStream(textureData.Data.ToByteArray()),ImreadModes.Color));
             }
             return texture;
         }

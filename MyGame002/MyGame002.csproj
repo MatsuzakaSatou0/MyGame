@@ -15,6 +15,7 @@
     <None Include="MonoECS\Components\TextRender.cs~RF1e354038.TMP" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GlmSharp" Version="0.9.8" />
     <PackageReference Include="Google.Protobuf" Version="3.33.2" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />

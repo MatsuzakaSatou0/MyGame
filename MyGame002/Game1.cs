@@ -68,7 +68,7 @@ namespace MyGame002
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _font = Content.Load<SpriteFont>("anzmoji");
+            _font = Content.Load<SpriteFont>("Misaki");
             // TODO: use this.Content to load your game content here
         }
 

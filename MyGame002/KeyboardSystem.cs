@@ -15,6 +15,7 @@ namespace MyGame002
         private float backSpaceTime = 0.0f;
         private int beforeKey = 0;
         private string inputText = "";
+
         TextRender inputTextRender;
         public KeyboardSystem(TextRender inputTextRender)
         {
@@ -75,7 +76,7 @@ namespace MyGame002
                 //Keys.Z = 90
                 //32
                 int keyNum = (int)key;
-                if (keyNum >= 65 && keyNum <= 90 || keyNum == (int)Keys.Space)
+                if (keyNum >= 65 && keyNum <= 90 || keyNum == (int)Keys.Space || keyNum >= (int)Keys.D1 && keyNum <= (int)Keys.D9)
                 {
                     if (keyNum != beforeKey)
                     {
@@ -83,6 +84,11 @@ namespace MyGame002
                     }
                     else
                     {
+                        return;
+                    }
+                    if(keyNum >= (int)Keys.D0 && keyNum <= (int)Keys.D9)
+                    {
+                        inputText += (char)(keyNum);
                         return;
                     }
                     if (!isShift && keyNum != (int)Keys.Space)

@@ -37,7 +37,7 @@ namespace MyGame002.GameProgram.Developer
             myDataFile.CreateTextureData("shio",new System.IO.FileStream(@"D:\MyGame\MyGame002\bin\Tex\ComfyUI_00087_.png", System.IO.FileMode.Open));
             entity.AddComponent(new TextureRender(entity, myDataFile.UnpackTextureData()["shio"]));
             */
-            title = textEntity.AddComponent(new TextRender(textEntity, 1,"かいはつめにゅー",Color.Yellow)) as TextRender;
+            title = textEntity.AddComponent(new TextRender(textEntity, 1,"開発メニュー",Color.Yellow)) as TextRender;
 
             text = menuEntity.AddComponent(new TextRender(menuEntity, 1, "", Color.White)) as TextRender;
 
@@ -45,7 +45,7 @@ namespace MyGame002.GameProgram.Developer
         }
         public void Update(GameTime gameTime)
         {
-            text.SetText("1しすてむつーるをきどう\n2.ブートアップ");
+            text.SetText("1システムツールを起動\n2.ブートアップ");
             if(Keyboard.GetState().IsKeyDown(Keys.D1))
             {
                 GameFileTool gameFileTool = new GameFileTool();

@@ -33,7 +33,7 @@ namespace MyGame002.GameProgram.System
 
         public void Start()
         {
-            messageRender = message.AddComponent(new TextRender(message, 1, "プログラムのなまえをにゅうりょくしてください", Color.White)) as TextRender;
+            messageRender = message.AddComponent(new TextRender(message, 1, "プログラムの名前を入力してください。", Color.White)) as TextRender;
             inputTextRender = input.AddComponent(new TextRender(input, 1, "", Color.White)) as TextRender;
             keyboardSystem = new KeyboardSystem(inputTextRender);
         }
@@ -44,6 +44,27 @@ namespace MyGame002.GameProgram.System
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 LoadProgram();
+            }
+            if (inputTextRender.GetText() == "")
+            {
+                string text = "プログラムの名前を入力してください。\n";
+                foreach (GameProgramInfo programInfo in Game1.GetInstance().GetProgramManager().GetProgramList())
+                {
+                    text += programInfo.GetName() + "\n";
+                }
+                messageRender.SetText(text);
+            }
+            else
+            {
+                string text = "見つかったプログラム\n";
+                foreach (GameProgramInfo programInfo in Game1.GetInstance().GetProgramManager().GetProgramList())
+                {
+                    if (programInfo.GetName().Contains(inputTextRender.GetText()))
+                    {
+                        text += programInfo.GetName() + "\n";
+                    }
+                }
+                messageRender.SetText(text);
             }
         }
         private void LoadProgram()
@@ -60,7 +81,7 @@ namespace MyGame002.GameProgram.System
             }
             if(found == false)
             {
-                messageRender.SetText("プログラムがみつかりませんでした");
+                messageRender.SetText("プログラムが見つかりませんでした。");
             }
         }
 

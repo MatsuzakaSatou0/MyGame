@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MyGame002.GameProgram.Developer;
+using MyGame002.GameProgram.System;
 using MyGame002.MonoECS;
 using MyGame002.MonoECS.Components;
 using System;
@@ -45,7 +46,7 @@ namespace MyGame002.GameProgram.GameLauncher
             //9000
             if(t >= 9000 || skipTitle)
             {
-                MyGame002.Game1.GetInstance().RegisterGame(new DevMenu());
+                MyGame002.Game1.GetInstance().RegisterGame(new ProgramSelector());
             }
             t += gameTime.ElapsedGameTime.Milliseconds;
         }

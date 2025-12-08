@@ -44,7 +44,7 @@ namespace MyGame002.MonoECS.Components
         }
         public void Draw(GameTime time)
         {
-            Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), text, GetEntity().GetPosition(),color, 0,new Vector2(0,0),size,Microsoft.Xna.Framework.Graphics.SpriteEffects.None,0);
+            Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), text, GetEntity().GetPosition(),color, 0,new Vector2(0,0),size,Microsoft.Xna.Framework.Graphics.SpriteEffects.None,1);
         }
 
         public void Update(GameTime time)
