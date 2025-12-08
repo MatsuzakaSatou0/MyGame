@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyGame002.GameProgram.Program
+namespace MyGame002.GameProgram.Yukari
 {
     public class Yukari : GameBase
     {

@@ -3,6 +3,7 @@ using MyGame002.GameProgram;
 using MyGame002.GameProgram.Developer;
 using MyGame002.GameProgram.GameLauncher;
 using MyGame002.GameProgram.Program;
+using MyGame002.GameProgram.Yukari;
 using System.IO;
 var launcher = new GameLauncher();
 launcher.SkipLogo();
