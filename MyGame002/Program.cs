@@ -2,7 +2,9 @@
 using MyGame002.GameProgram;
 using MyGame002.GameProgram.Developer;
 using MyGame002.GameProgram.Game;
+using MyGame002.GameProgram.Game.G0;
 using MyGame002.GameProgram.Game.G1;
+using MyGame002.GameProgram.Game.G2;
 using MyGame002.GameProgram.GameLauncher;
 using MyGame002.GameProgram.Program;
 using MyGame002.GameProgram.Yukari;
@@ -12,6 +14,7 @@ launcher.SkipLogo();
 MyGame002.Game1.GetInstance().RegisterGame(launcher);
 
 //プログラムリスト
+MyGame002.Game1.GetInstance().GetProgramManager().AddProgram(new GameProgramInfo("HelloWorld", "1.0.0", new Game000()));
 MyGame002.Game1.GetInstance().GetProgramManager().AddProgram(new GameProgramInfo("Chaser", "1.0.0", new Game001()));
 MyGame002.Game1.GetInstance().GetProgramManager().AddProgram(new GameProgramInfo("Predictor", "1.0.0", new Game002()));
 

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyGame002.GameProgram.Game.G1
+namespace MyGame002.GameProgram.Game.G2
 {
     public class Game002 : GameBase
     {

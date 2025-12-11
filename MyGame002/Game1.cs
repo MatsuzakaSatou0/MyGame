@@ -80,7 +80,8 @@ namespace MyGame002
             _graphics.PreferredBackBufferHeight = 360;
             //グラフィック設定の変更を適応します。これを実行しないと変更されないです。
             _graphics.ApplyChanges();
-            //初期化
+            //ゲームベースの初期化
+            gameBase.Initialize();
             base.Initialize();
         }
         //MonoGame側のコンテンツの読み込み
@@ -162,6 +163,7 @@ namespace MyGame002
             }
             //ゲームベースの開始
             gameBase.Start();
+            gameBase.Initialize();
             this.gameBase = gameBase;
         }
         /// <summary>

@@ -1,0 +1,4 @@
+OpenBibleの聖書から、漢字を取得してMonoGameの文字作成に利用しています。
+https://github.com/seven1m/open-bibles
+
+そのほか記号なども追加しています。
