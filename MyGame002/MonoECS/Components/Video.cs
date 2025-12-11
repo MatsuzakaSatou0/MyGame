@@ -49,8 +49,11 @@ namespace MyGame002.MonoECS.Components
 
         public void Start()
         {
-            
+
         }
+        /// <summary>
+        /// 動画を設定
+        /// </summary>
         public void SetVideo(string path)
         {
             capture = new VideoCapture(path);
@@ -60,6 +63,9 @@ namespace MyGame002.MonoECS.Components
             }
             size = new Vector2(capture.FrameHeight, capture.FrameWidth);
         }
+        /// <summary>
+        /// フレームレートを設定、動画の設定が変わります。
+        /// </summary>
         public void SetFPS(float fps)
         {
             this.fps = fps;

@@ -31,9 +31,14 @@ namespace MyGame002
         }
         public void Update(GameTime time)
         {
-            bool isShift = false;
+            bool isShift = false;;
+            List<Keys> keys = Keyboard.GetState().GetPressedKeys().ToList();
+            //なぜか入ってくる謎のキーを削除
+            keys.Remove(Keys.OemAuto);
+            keys.Remove(Keys.Attn);
+            keys.Remove(Keys.Zoom);
+            
             inputTextRender.SetText(inputText);
-            Keys[] keys = Keyboard.GetState().GetPressedKeys();
             if (Keyboard.GetState().IsKeyUp((Keys)beforeKey))
             {
                 beforeKey = 0;
@@ -42,7 +47,7 @@ namespace MyGame002
             {
                 backSpaceTime = 0;
             }
-            if (keys.Length > 4)
+            if (keys.Count > 1)
             {
                 if (keys.Contains(Keys.LeftShift))
                 {
@@ -53,11 +58,11 @@ namespace MyGame002
                     return;
                 }
             }
-            if (keys.Length != 4 && isShift == false)
+            if (keys.Count != 1 && isShift == false)
             {
                 return;
             }
-            if ((keys.Length != 5 && isShift == true))
+            if ((keys.Count != 2 && isShift == true))
             {
                 return;
             }
@@ -76,7 +81,7 @@ namespace MyGame002
                 //Keys.Z = 90
                 //32
                 int keyNum = (int)key;
-                if (keyNum >= 65 && keyNum <= 90 || keyNum == (int)Keys.Space || keyNum >= (int)Keys.D1 && keyNum <= (int)Keys.D9)
+                if (keyNum >= 65 && keyNum <= 90 || keyNum == (int)Keys.Space || keyNum >= (int)Keys.D0 && keyNum <= (int)Keys.D9)
                 {
                     if (keyNum != beforeKey)
                     {
@@ -90,6 +95,10 @@ namespace MyGame002
                     {
                         inputText += (char)(keyNum);
                         return;
+                    }
+                    if(keyNum == 48)
+                    {
+                        inputText += "0";
                     }
                     if (!isShift && keyNum != (int)Keys.Space)
                     {

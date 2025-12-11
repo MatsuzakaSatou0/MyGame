@@ -59,15 +59,5 @@ namespace MyGame002.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap ComfyUI_00089_ {
-            get {
-                object obj = ResourceManager.GetObject("ComfyUI_00089_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

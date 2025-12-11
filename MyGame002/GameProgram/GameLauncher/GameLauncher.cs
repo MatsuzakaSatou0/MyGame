@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using MyGame002.GameProgram.Developer;
 using MyGame002.GameProgram.System;
+using MyGame002.GameProgram.Yukari;
 using MyGame002.MonoECS;
 using MyGame002.MonoECS.Components;
 using System;

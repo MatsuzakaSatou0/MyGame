@@ -31,5 +31,30 @@ namespace MyGame002.MonoECS
         {
             return components;
         }
+
+        public Component GetComponent(Type type)
+        {
+            foreach(Component component in components)
+            {
+                if (component.GetType() == type)
+                {
+                    return component;
+                }
+            }
+            return null;
+        }
+
+        public T GetComponentAndConvert<T>()
+        {
+            foreach (Component component in components)
+            {
+                if (component.GetType() == typeof(T))
+                {
+                    T t = (T)component;
+                    return t;
+                }
+            }
+            return default(T);
+        }
     }
 }

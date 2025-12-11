@@ -12,10 +12,16 @@ namespace MyGame002.MonoCV
 {
     public class TextureUtil
     {
+
+        /// <summary>
+        /// OpenCVのデータをTexture2Dに変換
+        /// </summary>
         public static Texture2D MatToTexture2D(Mat matframe)
         {
+            //BGRをRGBに変換します。
             matframe = matframe.CvtColor(ColorConversionCodes.BGR2RGB);
             int i = 0;
+            //データを初期化
             Color[] data = new Color[(int)((int)matframe.Size().Width * (int)matframe.Size().Height)];
             for (int y = 0; y < (int)matframe.Size().Height; y++)
             {

@@ -24,5 +24,9 @@ namespace MyGame002
         {
             return programName;
         }
+        public string GetVersion()
+        {
+            return programVersion;
+        }
     }
 }

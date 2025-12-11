@@ -6,6 +6,7 @@ using MyGame002.MonoECS.Components;
 using MyGame002.MyData;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,9 @@ namespace MyGame002.GameProgram.Yukari
     {
         //OSもどき
         Entity entity = new Entity();
+        Entity textInput = new Entity();
+        Entity gameSelector = new Entity();
+        KeyboardSystem keyboardSystem;
         public void Draw(GameTime gameTime)
         {
 
@@ -26,23 +30,37 @@ namespace MyGame002.GameProgram.Yukari
         {
 
         }
-
-        public void Start()
+        private void SetupFile()
         {
             MyDataFile myDataFile = new MyDataFile();
-            myDataFile.Load(@"D:\MyGame\MyGame002\bin\Tex\data.mydata");
-            myDataFile.CreateTextureData("yukari", new FileStream(@"D:\MyGame\MyGame002\bin\Tex\ComfyUI_00153_.png", FileMode.Open));
-            entity.AddComponent(new ButtonYukariTest(entity, myDataFile.UnpackTextureData()["yukari"],Game1.GetInstance().GetCenter()));
-            entity.SetPosition(new Vector2(50, 50));
+            myDataFile.New();
+            foreach (string file in Directory.GetFiles(@"D:\MyGame\MyGame002\bin\Tex\"))
+            {
+                if (Path.GetExtension(file) == ".png")
+                {
+                    Trace.Write(file);
+                    myDataFile.CreateTextureData(Path.GetFileNameWithoutExtension(file), new FileStream(file, FileMode.Open));
+                }
+            }
+            myDataFile.Save("yukari_data.mgf");
+        }
+        public void Start()
+        {
+            SetupFile();
+            MyDataFile myDataFile = new MyDataFile();
+            entity.AddComponent(new TextRender(entity, 1,"YUKARI SYSTEM\nPROGRAM　プログラムの呼び出し",Color.White));
+            TextRender textRender = textInput.AddComponent(new TextRender(textInput, 1, "s", Color.White)) as TextRender;
+            textInput.SetPosition(new Vector2(0, (Game1.GetInstance().GetCenter().Y*2f-16.0f)));
+            keyboardSystem = new KeyboardSystem(textRender);
         }
         public void Update(GameTime gameTime)
         {
-            
+            keyboardSystem.Update(gameTime);
         }
 
         List<Component> GameBase.GetComponents()
         {
-            return EntityUtil.GetAllComponentsFromEntity(new Entity[] { entity });
+            return EntityUtil.GetAllComponentsFromEntity(new Entity[] { entity,textInput });
         }
         public void Dispose()
         {

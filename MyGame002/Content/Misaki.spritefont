@@ -11,7 +11,7 @@ with.
 		<!--
     Modify this string to change the font that will be imported.
     -->
-		<FontName>PC-9800</FontName>
+		<FontName>MSMINCHO</FontName>
 
 		<!--
     Size is a float value, measured in points. Modify this value to change
@@ -8494,6 +8494,82 @@ with.
 			<CharacterRegion>
 				<Start>&#8203;</Start>
 				<End>&#8203;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65281;</Start>
+				<End>&#65281;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#8221;</Start>
+				<End>&#8221;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65283;</Start>
+				<End>&#65283;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65284;</Start>
+				<End>&#65284;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65285;</Start>
+				<End>&#65285;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65286;</Start>
+				<End>&#65286;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#8217;</Start>
+				<End>&#8217;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65309;</Start>
+				<End>&#65309;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65374;</Start>
+				<End>&#65374;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65372;</Start>
+				<End>&#65372;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65371;</Start>
+				<End>&#65371;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#8216;</Start>
+				<End>&#8216;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65373;</Start>
+				<End>&#65373;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65290;</Start>
+				<End>&#65290;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65291;</Start>
+				<End>&#65291;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65343;</Start>
+				<End>&#65343;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65311;</Start>
+				<End>&#65311;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#65308;</Start>
+				<End>&#65308;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#21364;</Start>
+				<End>&#21364;</End>
 			</CharacterRegion>
 		</CharacterRegions>
 	</Asset>
