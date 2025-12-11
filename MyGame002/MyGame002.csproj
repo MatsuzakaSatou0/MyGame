@@ -25,6 +25,7 @@
     <PackageReference Include="Ryan.MonoGame.Framework.Content.Pipeline" Version="3.7.100" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="MonoECS\Components\Graph\" />
     <Folder Include="Protobuf\" />
   </ItemGroup>
   <ItemGroup>

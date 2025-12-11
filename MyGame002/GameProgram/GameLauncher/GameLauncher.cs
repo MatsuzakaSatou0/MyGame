@@ -34,7 +34,7 @@ namespace MyGame002.GameProgram.GameLauncher
         public void Start()
         {
             video = entity.AddComponent(new Video()) as Video;
-            video.SetVideo("System/Video/Demo.mp4");
+            video.SetVideo("Demo.mp4");
             video.SetFPS(30);
         }
         public void SkipLogo()

@@ -56,7 +56,6 @@ namespace MyGame002.GameProgram.Game.G1
                 Random random = new Random();
                 enemy.SetPosition(new Vector2(random.Next(0, (int)Game1.GetInstance().GetCenter().X*2), random.Next(0, (int)Game1.GetInstance().GetCenter().Y * 2)));
             }
-            //テキスト
         }
 
         public void Update(GameTime gameTime)

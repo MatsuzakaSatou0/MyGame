@@ -34,7 +34,7 @@ namespace MyGame002.GameProgram.Yukari
         {
             MyDataFile myDataFile = new MyDataFile();
             myDataFile.New();
-            foreach (string file in Directory.GetFiles(@"D:\MyGame\MyGame002\bin\Tex\"))
+            foreach (string file in Directory.GetFiles(@"C:\Users\youse\OneDrive\画像\Compress"))
             {
                 if (Path.GetExtension(file) == ".png")
                 {
@@ -42,13 +42,13 @@ namespace MyGame002.GameProgram.Yukari
                     myDataFile.CreateTextureData(Path.GetFileNameWithoutExtension(file), new FileStream(file, FileMode.Open));
                 }
             }
-            myDataFile.Save("yukari_data.mgf");
+            myDataFile.Save("gamedata.mgf");
         }
         public void Start()
         {
             SetupFile();
             MyDataFile myDataFile = new MyDataFile();
-            entity.AddComponent(new TextRender(entity, 1,"YUKARI SYSTEM\nPROGRAM　プログラムの呼び出し",Color.White));
+            entity.AddComponent(new TextRender(entity, 1,"圧縮！",Color.White));
             TextRender textRender = textInput.AddComponent(new TextRender(textInput, 1, "s", Color.White)) as TextRender;
             textInput.SetPosition(new Vector2(0, (Game1.GetInstance().GetCenter().Y*2f-16.0f)));
             keyboardSystem = new KeyboardSystem(textRender);
