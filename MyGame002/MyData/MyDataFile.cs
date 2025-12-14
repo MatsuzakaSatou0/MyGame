@@ -29,6 +29,8 @@ namespace MyGame002.MyData
             //データの名前を設定
             textureData.Name = name;
             data.Textures.Add(textureData);
+            stream.Close();
+            stream.Dispose();
         }
         /// <summary>
         /// テクスチャデータを新規作成後、名前とストリームを設定
@@ -42,6 +44,8 @@ namespace MyGame002.MyData
             //データの名前を設定
             audioData.Name = name;
             data.Audio.Add(audioData);
+            stream.Close();
+            stream.Dispose();
         }
         /// <summary>
         /// テクスチャーのデータをMatに変換

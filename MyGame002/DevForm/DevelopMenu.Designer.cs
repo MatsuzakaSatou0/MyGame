@@ -32,6 +32,7 @@
             windowSizeNum = new System.Windows.Forms.NumericUpDown();
             CompressButton = new System.Windows.Forms.Button();
             CompressFileInput = new System.Windows.Forms.TextBox();
+            textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)windowSizeNum).BeginInit();
             SuspendLayout();
             // 
@@ -74,11 +75,19 @@
             CompressFileInput.Size = new System.Drawing.Size(195, 23);
             CompressFileInput.TabIndex = 4;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new System.Drawing.Point(12, 105);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new System.Drawing.Size(195, 23);
+            textBox1.TabIndex = 5;
+            // 
             // DevelopMenu
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(219, 111);
+            ClientSize = new System.Drawing.Size(219, 134);
+            Controls.Add(textBox1);
             Controls.Add(CompressFileInput);
             Controls.Add(CompressButton);
             Controls.Add(windowSizeNum);
@@ -95,5 +104,6 @@
         private System.Windows.Forms.NumericUpDown windowSizeNum;
         private System.Windows.Forms.Button CompressButton;
         private System.Windows.Forms.TextBox CompressFileInput;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

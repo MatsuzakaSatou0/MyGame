@@ -51,15 +51,21 @@ namespace MyGame002
                 if (Path.GetExtension(file) == ".png")
                 {
                     Logger.GetInstance().Log(Path.GetFileName(file) + "を圧縮しました。");
-                    dataFile.CreateTextureData(Path.GetFileName(file), new FileStream(file, FileMode.Open));
+                    FileStream stream = new FileStream(file, FileMode.Open);
+                    dataFile.CreateTextureData(Path.GetFileName(file), stream);
+                    stream.Close();
+                    stream.Dispose();
                 }
                 if(Path.GetExtension(file) == ".mp3")
                 {
                     Logger.GetInstance().Log(Path.GetFileName(file) + "を圧縮しました。");
-                    dataFile.CreateAudioData(Path.GetFileName(file), new FileStream(file, FileMode.Open));
+                    FileStream stream = new FileStream(file, FileMode.Open);
+                    dataFile.CreateTextureData(Path.GetFileName(file), stream);
+                    stream.Close();
+                    stream.Dispose();
                 }
             }
-            dataFile.Save(Path.Combine(path,"archive.mdf"));
+            dataFile.Save(textBox1.Text);
         }
     }
 }
