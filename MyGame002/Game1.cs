@@ -17,7 +17,7 @@ namespace MyGame002
             return _singleInstance;
         }
         //開発用モードのフラグ
-        private bool developmentMode = false;
+        private bool developmentMode = true;
         //スクリーンのサイズの比率
         private float screenSizeMultiplier = 1f;
         //グラフィック

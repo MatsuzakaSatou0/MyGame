@@ -30,6 +30,8 @@
         {
             label1 = new System.Windows.Forms.Label();
             windowSizeNum = new System.Windows.Forms.NumericUpDown();
+            CompressButton = new System.Windows.Forms.Button();
+            CompressFileInput = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)windowSizeNum).BeginInit();
             SuspendLayout();
             // 
@@ -55,11 +57,30 @@
             windowSizeNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
             windowSizeNum.ValueChanged += windowSizeNum_ValueChanged;
             // 
+            // CompressButton
+            // 
+            CompressButton.Location = new System.Drawing.Point(12, 47);
+            CompressButton.Name = "CompressButton";
+            CompressButton.Size = new System.Drawing.Size(197, 23);
+            CompressButton.TabIndex = 3;
+            CompressButton.Text = "CompressFile";
+            CompressButton.UseVisualStyleBackColor = true;
+            CompressButton.Click += CompressButton_Click;
+            // 
+            // CompressFileInput
+            // 
+            CompressFileInput.Location = new System.Drawing.Point(12, 76);
+            CompressFileInput.Name = "CompressFileInput";
+            CompressFileInput.Size = new System.Drawing.Size(195, 23);
+            CompressFileInput.TabIndex = 4;
+            // 
             // DevelopMenu
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(214, 44);
+            ClientSize = new System.Drawing.Size(219, 111);
+            Controls.Add(CompressFileInput);
+            Controls.Add(CompressButton);
             Controls.Add(windowSizeNum);
             Controls.Add(label1);
             Name = "DevelopMenu";
@@ -72,5 +93,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown windowSizeNum;
+        private System.Windows.Forms.Button CompressButton;
+        private System.Windows.Forms.TextBox CompressFileInput;
     }
 }

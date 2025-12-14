@@ -18,9 +18,9 @@ namespace MyGame002.MyData
     {
         GameResource data;
         /// <summary>
-        /// テクスチャデータを新規作成後、名前とストリームを設定
+        /// 音声データを新規作成後、名前とストリームを設定
         /// </summary>
-        public void CreateTextureData(string name,FileStream stream)
+        public void CreateTextureData(string name, FileStream stream)
         {
             //テクスチャデータ
             TextureData textureData = new TextureData();
@@ -29,6 +29,19 @@ namespace MyGame002.MyData
             //データの名前を設定
             textureData.Name = name;
             data.Textures.Add(textureData);
+        }
+        /// <summary>
+        /// テクスチャデータを新規作成後、名前とストリームを設定
+        /// </summary>
+        public void CreateAudioData(string name,FileStream stream)
+        {
+            //テクスチャデータ
+            AudioData audioData = new AudioData();
+            //データを設定
+            audioData.Data = Google.Protobuf.ByteString.FromStream(stream);
+            //データの名前を設定
+            audioData.Name = name;
+            data.Audio.Add(audioData);
         }
         /// <summary>
         /// テクスチャーのデータをMatに変換
@@ -46,6 +59,29 @@ namespace MyGame002.MyData
             //テクスチャを返す。
             return texture;
         }
+        public Dictionary<string, MemoryStream> UnpackAudioData()
+        {
+            //C#の辞書機能。CPPユーザーには馴染みがないかも　std::mapと似ています。
+            Dictionary<string, MemoryStream> audio = new Dictionary<string, MemoryStream>();
+            if(data == null)
+            {
+                Logger.GetInstance().LogError("データが含まれていません。");
+                return null;
+            }
+            if (data.Audio.Count == 0)
+            {
+                return null;
+            }
+            //全テクスチャを取得
+            foreach (AudioData data in data.Audio)
+            {
+                //名前|Matデータ として追加
+                audio.Add(data.Name, new MemoryStream(data.Data.ToByteArray()));
+            }
+            //テクスチャを返す。
+            return audio;
+        }
+        /// <summary>
         /// <summary>
         /// データを新規作成
         /// </summary>
@@ -59,6 +95,11 @@ namespace MyGame002.MyData
         /// <param name="path">ファイルのパス</param>
         public void Load(string path)
         {
+            if(!File.Exists(path))
+            {
+                Logger.GetInstance().LogError("読み込もうとしたファイルが存在しませんでした。");
+                return;
+            }
             data = GameResource.Parser.ParseFrom(File.ReadAllBytes(path));
         }
         /// <summary>
