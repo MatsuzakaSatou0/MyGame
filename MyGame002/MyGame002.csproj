@@ -16,6 +16,10 @@
     <None Include="MonoECS\Components\TextRender.cs~RF1e354038.TMP" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="CSCore" Version="1.2.1.2" />
     <PackageReference Include="GlmSharp" Version="0.9.8" />
     <PackageReference Include="Google.Protobuf" Version="3.33.2" />

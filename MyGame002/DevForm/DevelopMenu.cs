@@ -60,7 +60,7 @@ namespace MyGame002
                 {
                     Logger.GetInstance().Log(Path.GetFileName(file) + "を圧縮しました。");
                     FileStream stream = new FileStream(file, FileMode.Open);
-                    dataFile.CreateTextureData(Path.GetFileName(file), stream);
+                    dataFile.CreateAudioData(Path.GetFileName(file), stream);
                     stream.Close();
                     stream.Dispose();
                 }

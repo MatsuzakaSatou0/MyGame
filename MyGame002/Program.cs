@@ -24,7 +24,10 @@ Load:
     foreach (string path in Directory.GetFiles("Programs"))
     {
         //dllを読み込み追加
-        programes.Add(Assembly.LoadFile(Path.GetFullPath(path)));
+        if (Path.GetExtension(path) == ".dll")
+        {
+            programes.Add(Assembly.LoadFile(Path.GetFullPath(path)));
+        }
     }
     foreach (Assembly program in programes)
     {

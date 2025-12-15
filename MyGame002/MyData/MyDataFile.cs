@@ -74,6 +74,7 @@ namespace MyGame002.MyData
             }
             if (data.Audio.Count == 0)
             {
+                Logger.GetInstance().LogError("音声データが含まれていません。");
                 return null;
             }
             //全テクスチャを取得

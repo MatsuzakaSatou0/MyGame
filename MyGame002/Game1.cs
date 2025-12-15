@@ -4,7 +4,11 @@ using Microsoft.Xna.Framework.Input;
 using MyGame002.MonoECS;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace MyGame002
 {
@@ -53,6 +57,10 @@ namespace MyGame002
         {
             //始まったら
             base.BeginRun();
+            if (gameBase == null)
+            {
+                return;
+            }
             //マウスの描画をfalseにする。
             this.IsMouseVisible = false;
             //開発用モードがオンの場合
@@ -81,6 +89,12 @@ namespace MyGame002
             //グラフィック設定の変更を適応します。これを実行しないと変更されないです。
             _graphics.ApplyChanges();
             //ゲームベースの初期化
+            if(gameBase == null)
+            {
+                MessageBox.Show("プログラムが初期化されませんでした。Programsフォルダーに適切なプログラムがあることを確認してください。");
+                this.Exit();
+                return;
+            }
             gameBase.Initialize();
             base.Initialize();
         }
@@ -96,8 +110,12 @@ namespace MyGame002
 
         protected override void Update(GameTime gameTime)
         {
+            if (gameBase == null)
+            {
+                return;
+            }
             //止まっているか
-            if(isStopping)
+            if (isStopping)
             {
                 return;
             }
@@ -120,6 +138,10 @@ namespace MyGame002
 
         protected override void Draw(GameTime gameTime)
         {
+            if (gameBase == null)
+            {
+                return;
+            }
             //停止しているか
             if (isStopping)
             {
