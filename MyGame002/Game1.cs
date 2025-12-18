@@ -194,7 +194,7 @@ namespace MyGame002
             {
                 debugString += "GameTextureRendredCount:" + renderedCount.ToString();
                 //デバッグ表示
-                Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), debugString, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White, 0, new Vector2(0, 0), 0.75f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
+                Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), debugString, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White, 0, new Vector2(0, 0), 0.85f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
             }
             //スプライトバッチの描画終了
             Game1.GetInstance()._spriteBatch.End();
