@@ -1,11 +1,18 @@
 ﻿using MyGame002;
+using MyGame002.GameProgram.Colony;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-if (!Directory.Exists("Programs"))
+bool customBoot = true;
+
+if(customBoot)
+{
+    goto CustomBoot;
+}
+else if (!Directory.Exists("Programs"))
 {
     //強制終了
     goto End;
@@ -15,7 +22,6 @@ else
     //読み込み
     goto Load;
 }
-
 Load:
 {
     //DLLのリスト
@@ -33,7 +39,7 @@ Load:
     {
         //dllの中からentryのtypeファイルを取得。
         var entry = program.GetTypes();
-        foreach(Type t in entry)
+        foreach (Type t in entry)
         {
             var methods = t.GetMethods();
             foreach (MethodInfo info in methods)
@@ -46,6 +52,13 @@ Load:
         }
     }
     Game1.GetInstance().Run();
+    goto End;
+}
+CustomBoot:
+{
+    Game1.GetInstance().RegisterGame(new ColonyGame());
+    Game1.GetInstance().Run();
+    goto End;
 }
 End:
 {

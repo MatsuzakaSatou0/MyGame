@@ -48,7 +48,7 @@ namespace MyGame002.MonoECS.Components
             //使い捨てストリームを設定
             MemoryStream disposableStream = new MemoryStream(streamByte);
             asioOut = new WasapiOut();
-            var audioFile = new Mp3FileReader(disposableStream);
+            var audioFile = new WaveFileReader(disposableStream);
             asioOut.Init(audioFile);
             asioOut.Play();
             waves.Add(asioOut);

@@ -27,14 +27,26 @@ namespace MyGame002.MonoECS.Components
         }
         public virtual void Draw(GameTime time)
         {
+            if(texture == null)
+            {
+                return;
+            }
             Game1.GetInstance()._spriteBatch.Draw(texture,
-                entity.GetPosition()+ new Vector2((int)texture.Width / 2, (int)texture.Height / 2), //位置
+                (entity.GetPosition() * Game1.GetInstance().GetScreenSizeMulti() + new Vector2((int)texture.Width / 2, (int)texture.Height / 2)), //位置
                 new Microsoft.Xna.Framework.Rectangle(0, 0, (int)texture.Width, (int)texture.Height), //ソース
                 Microsoft.Xna.Framework.Color.White,
                 (float)(Math.PI) + 0, //回転(90度回す)
-                new Vector2((int)texture.Width / 2, (int)texture.Height / 2), //オフセット
+                new Vector2((int)texture.Width / 2, (int)texture.Height / 2) * Game1.GetInstance().GetScreenSizeMulti(), //オフセット
                 1 * Game1.GetInstance().GetScreenSizeMulti(), //スケール
                 SpriteEffects.None, 0);
+        }
+        public Texture2D GetTexture()
+        {
+            return texture;
+        }
+        public Entity GetEntity()
+        {
+            return entity;
         }
 
         public void Start()

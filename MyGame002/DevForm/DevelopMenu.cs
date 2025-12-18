@@ -36,7 +36,7 @@ namespace MyGame002
                 Logger.GetInstance().LogError("圧縮先のディレクトリは存在しませんでした。");
                 return;
             }
-            foreach(string directory in paths)
+            foreach (string directory in paths)
             {
                 if (i != paths.Length)
                 {
@@ -56,7 +56,7 @@ namespace MyGame002
                     stream.Close();
                     stream.Dispose();
                 }
-                if(Path.GetExtension(file) == ".mp3")
+                if (Path.GetExtension(file) == ".wav")
                 {
                     Logger.GetInstance().Log(Path.GetFileName(file) + "を圧縮しました。");
                     FileStream stream = new FileStream(file, FileMode.Open);
@@ -66,6 +66,26 @@ namespace MyGame002
                 }
             }
             dataFile.Save(textBox1.Text);
+        }
+
+        private void MonoFontGen_Click(object sender, EventArgs e)
+        {
+            string xml = "";
+            List<char> chars = new List<char>();
+            string[] texts = File.ReadAllLines(@"font.txt");
+            foreach (string text in texts)
+            {
+                foreach (char c in text)
+                {
+                    if (!chars.Contains(c))
+                    {
+                        xml += "<CharacterRegion><Start>&#" + ((int)c).ToString() + ";</Start><End>&#" + ((int)c).ToString() + ";</End></CharacterRegion>";
+                        chars.Add(c);
+                    }
+                }
+            }
+            File.WriteAllText("fontOut.txt", xml);
+            MessageBox.Show("DONE");
         }
     }
 }

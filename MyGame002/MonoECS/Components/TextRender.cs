@@ -22,6 +22,18 @@ namespace MyGame002.MonoECS.Components
             this.text = text;
             this.color = color;
         }
+        public void SetPosition(Vector2 position)
+        {
+            entity.SetPosition(position);
+        }
+        public Vector2 GetSize()
+        {
+            float x = 0.0f;
+            float y = 0.0f;
+            x = Game1.GetInstance().GetFont().Glyphs[0].BoundsInTexture.Width;
+            y = Game1.GetInstance().GetFont().Glyphs[0].BoundsInTexture.Height;
+            return new Vector2(text.Length * x,y);
+        }
         public string GetText()
         {
             return text;
@@ -44,6 +56,13 @@ namespace MyGame002.MonoECS.Components
         }
         public void Draw(GameTime time)
         {
+            foreach(var c in text) {
+                if (!Game1.GetInstance().GetFont().Characters.Contains(c))
+                {
+                    Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "BAD CHAR", GetEntity().GetPosition(), color, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 1);
+                    return;
+                }
+             }
             Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), text, GetEntity().GetPosition(),color, 0,new Vector2(0,0),size,Microsoft.Xna.Framework.Graphics.SpriteEffects.None,1);
         }
 

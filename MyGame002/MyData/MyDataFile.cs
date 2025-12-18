@@ -54,6 +54,11 @@ namespace MyGame002.MyData
         {
             //C#の辞書機能。CPPユーザーには馴染みがないかも　std::mapと似ています。
             Dictionary<string, Mat> texture = new Dictionary<string, Mat>();
+            if(data == null)
+            {
+                Logger.GetInstance().LogError("テクスチャーがありません。");
+                return null;
+            }
             //全テクスチャを取得
             foreach(TextureData textureData in data.Textures)
             {
