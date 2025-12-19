@@ -1,4 +1,5 @@
 ﻿using MyGame002;
+using MyGame002.GameProgram.Colony;
 using MyGame002.MonoUI.Example;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ Load:
 }
 CustomBoot:
 {
-    Game1.GetInstance().RegisterGame(new MonoUIExample());
+    Game1.GetInstance().RegisterGame(new ColonyGame());
     Game1.GetInstance().Run();
     goto End;
 }

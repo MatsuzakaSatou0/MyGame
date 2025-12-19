@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MyGame002.MonoUI.Example
 {
@@ -16,8 +15,8 @@ namespace MyGame002.MonoUI.Example
     {
         private bool initialized = false;
         private MyDataFile dataFile = new MyDataFile();
-        Entity entity = new Entity();
-        Entity entity2 = new Entity();
+        Entity tab = new Entity();
+        Entity taskbar = new Entity();
         Entity mouseEntity = new Entity();
         public void Dispose()
         {
@@ -34,12 +33,12 @@ namespace MyGame002.MonoUI.Example
             if (initialized)
             {
                 List<Entity> entities = new List<Entity>();
-                entities.Add(entity);
-                entities.Add(entity2);
+                entities.Add(tab);
                 entities.Add(mouseEntity);
+                entities.Add(taskbar);
                 return EntityUtil.GetAllComponentsFromEntity(entities.ToArray());
             }
-            return EntityUtil.GetAllComponentsFromEntity(new List<Entity>() {entity,mouseEntity,entity2}.ToArray());
+            return EntityUtil.GetAllComponentsFromEntity(new List<Entity>() {mouseEntity}.ToArray());
         }
 
         public void Initialize()
@@ -57,11 +56,12 @@ namespace MyGame002.MonoUI.Example
             if(!initialized)
             {
                 dataFile.Load("MonoUI.mdf");
-                entity.AddComponent(new UIPanel(entity,true));
-                entity2.AddComponent(new UIPanel(entity2, false));
-                entity2.SetPosition(new Vector2(50, 50));
+                tab.AddComponent(new UIPanelExample(tab,true));
                 mouseEntity.AddComponent(new MousePlayerController(mouseEntity));
-                mouseEntity.AddComponent(new TextureRender(mouseEntity, dataFile.UnpackTextureData()["054.png"], new Vector2(30,30)));
+                mouseEntity.AddComponent(new TextureRender(mouseEntity, dataFile.TryGetTexture("MouseCursor.png"), new Vector2(30,30),1));
+
+                taskbar.AddComponent(new Button(taskbar, dataFile.TryGetTexture("Tab1.png"),new Vector2(50, 50),0));
+                taskbar.SetPosition(new Vector2(0, Game1.GetInstance().GetCenter().Y * 2 - 50));
                 initialized = true;
             }
         }

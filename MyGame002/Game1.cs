@@ -167,7 +167,7 @@ namespace MyGame002
                  * 緊急停止用の処理。（今はほとんど使っていません。）
                  */
                 //スプライトの描画開始
-                Game1.GetInstance()._spriteBatch.Begin();
+                Game1.GetInstance()._spriteBatch.Begin(SpriteSortMode.BackToFront);
                 //描画
                 base.Draw(gameTime);
                 //トレースを表示
@@ -177,7 +177,7 @@ namespace MyGame002
                 return;
             }
             //スプライトバッチの描画開始
-            Game1.GetInstance()._spriteBatch.Begin();
+            Game1.GetInstance()._spriteBatch.Begin(SpriteSortMode.FrontToBack);
             //スプライトの背景を初期化（glClearと同等なので、実行しないと残像が発生する。）
             GraphicsDevice.Clear(Color.Black);
             //ゲームの基礎の描画

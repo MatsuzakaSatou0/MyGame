@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MyGame002.MonoCV;
 using OpenCvSharp;
+using SharpDX.Direct2D1;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,8 +19,9 @@ namespace MyGame002.MonoECS.Components
         private Texture2D texture;
         Entity entity;
 
-        public Button(Entity entity, Mat texture, Vector2 size) : base(entity, texture, size)
+        public Button(Entity entity, Mat texture, Vector2 size,int layer) : base(entity, texture, size,layer)
         {
+            this.SetLayer(layer);
             this.entity = entity;
             buttonSize = size;
         }

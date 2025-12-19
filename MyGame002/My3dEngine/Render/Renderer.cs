@@ -146,7 +146,7 @@ namespace MyGame002.My3dEngine.Renderer
 
             MyDataFile myDataFile = new MyDataFile();
             myDataFile.Load("yukari_data.mgf");
-            Mat texture = myDataFile.UnpackTextureData()["Cube"];
+            Mat texture = myDataFile.TryGetTexture("Cube");
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)

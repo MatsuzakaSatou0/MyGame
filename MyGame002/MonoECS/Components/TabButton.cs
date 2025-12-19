@@ -13,7 +13,7 @@ namespace MyGame002.MonoECS.Components
     {
         private bool isOver = false;
         private int index = 0;
-        public TabButton(Entity entity, Mat texture, Vector2 size,int index) : base(entity, texture, size)
+        public TabButton(Entity entity, Mat texture, Vector2 size,int index) : base(entity, texture, size,index)
         {
             this.index = index;
         }

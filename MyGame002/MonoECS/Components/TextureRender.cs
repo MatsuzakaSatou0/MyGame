@@ -19,11 +19,17 @@ namespace MyGame002.MonoECS.Components
         private Vector2 offset = new Vector2(0, 0);
         private Texture2D texture;
         private bool autoScale = false;
+        private int layer = 0;
         Entity entity;
-        public TextureRender(Entity entity,Mat texture,Vector2 size)
+        public TextureRender(Entity entity,Mat texture,Vector2 size,int layer=0)
         {
             this.entity = entity;
+            this.layer = layer;
             MakeTexture(texture, size);
+        }
+        public void SetLayer(int layer)
+        {
+            this.layer = layer;
         }
         public Vector2 GetOffset()
         {
@@ -54,7 +60,7 @@ namespace MyGame002.MonoECS.Components
                     (float)(Math.PI) + 0, //回転(90度回す)
                     new Vector2((int)texture.Width / 2, (int)texture.Height / 2) * Game1.GetInstance().GetScreenSizeMulti(), //オフセット
                     1 * Game1.GetInstance().GetScreenSizeMulti(), //スケール
-                    SpriteEffects.None, 0);
+                    SpriteEffects.None, layer);
             }
             else
             {
@@ -65,7 +71,7 @@ namespace MyGame002.MonoECS.Components
                     (float)(Math.PI) + 0, //回転(90度回す)
                     new Vector2((int)texture.Width / 2, (int)texture.Height / 2), //オフセット
                     1, //スケール
-                    SpriteEffects.None, 0);
+                    SpriteEffects.None, layer);
             }
         }
         public void DisableAutoScale()

@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Assimp.Metadata;
 
 namespace MyGame002.MonoUI.Panel
 {
@@ -39,14 +38,18 @@ namespace MyGame002.MonoUI.Panel
             this.entity = entity;
             this.isWindow = isWindow;
         }
+        public int GetTabIndex()
+        {
+            return tabIndex;
+        }
         public void Draw(GameTime time)
         {
             
         }
-        public TabButton AddTab(int index)
+        public TabButton CreateTab(int index, Mat texture)
         {
             isTab = true;
-            TabButton button = new TabButton(entity, dataFile.UnpackTextureData()["054.png"], new Vector2(20, 20),0);
+            TabButton button = new TabButton(entity,texture, new Vector2(20, 20),0);
             button.SetOffset(new Vector2(25 * tabNum, 0));
             tabNum++;
             button.SetIndex(index);
@@ -58,22 +61,22 @@ namespace MyGame002.MonoUI.Panel
         {
             
         }
-        public void Initialize()
+        public virtual void Initialize()
         {
             dataFile.Load("MonoUI.mdf");
             if (isWindow)
             {
-                var windowRenderComponent = new UIWindow(entity, dataFile.UnpackTextureData()["UIWindow.png"], new Vector2(windowWidth, 20));
+                var windowRenderComponent = new UIWindow(entity, dataFile.TryGetTexture("UIWindow.png"), new Vector2(windowWidth, 20),0);
                 entity.AddComponent(windowRenderComponent);
                 windowRenderComponent.DisableAutoScale();
             }
-            windowBG = new TextureRender(entity, dataFile.UnpackTextureData()["UIWindow.png"], new Vector2(windowWidth, renderOffset.Y));
+            windowBG = new TextureRender(entity, dataFile.TryGetTexture("UIWindow.png"), new Vector2(windowWidth, renderOffset.Y));
             windowBG.SetOffset(new Vector2(0, 20));
             entity.AddComponent(windowBG);
             initialized = true;
             Load();
         }
-        public void Clear()
+        public virtual void Clear()
         {
             foreach(Component component in componets)
             {
@@ -83,13 +86,17 @@ namespace MyGame002.MonoUI.Panel
                 }
                 entity.RemoveComponent(component as Component);
             }
-            Resize();
+            componets.Clear();
+            ResizeBG();
         }
         List<TabButton> tabButtons = new List<TabButton>();
-        public void Load()
+        public void AddTabButton(TabButton button)
         {
-            tabButtons.Add(AddTab(0));
-            tabButtons.Add(AddTab(1));
+            tabButtons.Add(button);
+        }
+        public virtual void Load()
+        {
+
         }
         public TextRender AddTextComponent(string text,Color color)
         {
@@ -98,18 +105,19 @@ namespace MyGame002.MonoUI.Panel
             renderOffset += new Vector2(0, 19);
             entity.AddComponent(t);
             componets.Add(t);
-            Resize();
+            ResizeBG();
             return t;
         }
-        public void Resize()
+        public void ResizeBG()
         {
-            windowBG.MakeTexture(dataFile.UnpackTextureData()["UIWindowBG.png"], new Vector2(windowWidth, renderOffset.Y));
+            windowBG.MakeTexture(dataFile.TryGetTexture("UIWindowBG.png"), new Vector2(windowWidth, renderOffset.Y));
         }
-        public void Update(GameTime time)
+        public virtual void Update(GameTime time)
         {
             if(!initialized)
             {
                 Initialize();
+                DoTab();
             }
             if (isTab)
             {
@@ -118,6 +126,7 @@ namespace MyGame002.MonoUI.Panel
                     Clear();
                     DoTab();
                 }
+                beforeTabIndex = tabIndex;
                 foreach (TabButton button in tabButtons)
                 {
                     if (button.IsClick())
@@ -125,17 +134,11 @@ namespace MyGame002.MonoUI.Panel
                         tabIndex = button.GetIndex();
                     }
                 }
-                beforeTabIndex = tabIndex;
             }
         }
         public virtual void DoTab()
         {
-            switch (tabIndex)
-            {
-                case 1:
-                    AddTextComponent("交渉力", Color.Red);
-                    break;
-            }
+
         }
     }
 }

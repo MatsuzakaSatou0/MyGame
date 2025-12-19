@@ -16,7 +16,7 @@ namespace MyGame002.MonoUI.Panel
         private static bool moveLock = false;
         private bool moving = false;
         private Vector2 mouseVelocity = new Vector2(0,0);
-        public UIWindow(Entity entity, Mat texture, Vector2 size) : base(entity, texture, size)
+        public UIWindow(Entity entity, Mat texture, Vector2 size,int layer) : base(entity, texture, size, layer)
         {
 
         }

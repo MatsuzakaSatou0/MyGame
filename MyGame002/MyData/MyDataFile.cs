@@ -4,6 +4,8 @@ using OpenCvSharp;
 using SharpDX.DXGI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -47,10 +49,20 @@ namespace MyGame002.MyData
             stream.Close();
             stream.Dispose();
         }
-        /// <summary>
-        /// テクスチャーのデータをMatに変換
-        /// </summary>
-        public Dictionary<string, Mat> UnpackTextureData()
+        public Mat TryGetTexture(string texture)
+        {
+            if(data == null)
+            {
+                return new Mat(1, 1, MatType.CV_8UC3);
+            }    
+            if(UnpackTextureData().TryGetValue(texture, out var textureData))
+            {
+                return textureData;
+            }
+            Trace.WriteLine(texture + "が読み込めませんでした。");
+            return new Mat(1, 1, MatType.CV_8UC3);
+        }
+        private Dictionary<string, Mat> UnpackTextureData()
         {
             //C#の辞書機能。CPPユーザーには馴染みがないかも　std::mapと似ています。
             Dictionary<string, Mat> texture = new Dictionary<string, Mat>();
@@ -107,7 +119,7 @@ namespace MyGame002.MyData
         {
             if(!File.Exists(path))
             {
-                Logger.GetInstance().LogError("読み込もうとしたファイルが存在しませんでした。");
+                Logger.GetInstance().LogError(path+"読み込もうとしたファイルが存在しませんでした。");
                 return;
             }
             data = GameResource.Parser.ParseFrom(File.ReadAllBytes(path));
