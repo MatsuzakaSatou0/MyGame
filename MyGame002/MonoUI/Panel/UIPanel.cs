@@ -30,7 +30,8 @@ namespace MyGame002.MonoUI.Panel
         private bool isTab = false;
         private bool initialized = false;
         private int tabNum = 0;
-        private int beforeTabNum = 0;
+        private int tabIndex = 0;
+        private int beforeTabIndex = 0;
 
         private List<Component> componets = new List<Component>();
         public UIPanel(Entity entity,bool isWindow)
@@ -112,7 +113,7 @@ namespace MyGame002.MonoUI.Panel
             }
             if (isTab)
             {
-                if (tabNum != beforeTabNum)
+                if (tabIndex != beforeTabIndex)
                 {
                     Clear();
                     DoTab();
@@ -121,15 +122,15 @@ namespace MyGame002.MonoUI.Panel
                 {
                     if (button.IsClick())
                     {
-                        tabNum = button.GetIndex();
+                        tabIndex = button.GetIndex();
                     }
                 }
-                beforeTabNum = tabNum;
+                beforeTabIndex = tabIndex;
             }
         }
         public virtual void DoTab()
         {
-            switch (tabNum)
+            switch (tabIndex)
             {
                 case 1:
                     AddTextComponent("交渉力", Color.Red);

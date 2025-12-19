@@ -25,7 +25,7 @@ namespace MyGame002.MonoECS.Components
         }
         public override void Draw(GameTime time)
         {
-            if((this.GetOffset().X+Mouse.GetState().X <= entity.GetPosition().X || this.GetOffset().Y+Mouse.GetState().Y <= entity.GetPosition().Y || this.GetOffset().X+Mouse.GetState().X >= entity.GetPosition().X+ buttonSize.X || this.GetOffset().Y+Mouse.GetState().Y >= entity.GetPosition().Y+buttonSize.Y) == false)
+            if((Mouse.GetState().X <= this.GetOffset().X+entity.GetPosition().X || Mouse.GetState().Y <= this.GetOffset().Y + entity.GetPosition().Y || Mouse.GetState().X >= this.GetOffset().X + entity.GetPosition().X+ buttonSize.X || Mouse.GetState().Y >= this.GetOffset().Y + entity.GetPosition().Y+buttonSize.Y) == false)
             {
                 OverCursor();
             }
