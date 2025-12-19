@@ -1,5 +1,4 @@
 ﻿using MyGame002;
-using MyGame002.GameProgram.Colony;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -56,7 +55,6 @@ Load:
 }
 CustomBoot:
 {
-    Game1.GetInstance().RegisterGame(new ColonyGame());
     Game1.GetInstance().Run();
     goto End;
 }
