@@ -27,6 +27,10 @@ namespace MyGame002.MonoECS
             components.Add(component);
             return component;
         }
+        public void RemoveComponent(Component component)
+        {
+            components.Remove(component);
+        }
         public List<Component> GetComponents()
         {
             return components;

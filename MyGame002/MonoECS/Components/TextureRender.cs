@@ -25,6 +25,10 @@ namespace MyGame002.MonoECS.Components
             this.entity = entity;
             MakeTexture(texture, size);
         }
+        public Vector2 GetOffset()
+        {
+            return offset;
+        }
         public void SetOffset(Vector2 offset)
         {
             this.offset = offset;
