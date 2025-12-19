@@ -19,6 +19,10 @@ namespace MyGame002.MonoECS.Components
              this.camera = camera;
         }
 
+        public GameTextureRender(Entity entity, Camera camera, Texture2D texture, Vector2 size) : base(entity, texture, size)
+        {
+            this.camera = camera;
+        }
         public override void Draw(GameTime time)
         {
             Vector2 screenPosition = new Vector2();
@@ -30,13 +34,13 @@ namespace MyGame002.MonoECS.Components
                     return;
                 }
                 Game1.GetInstance()._spriteBatch.Draw(GetTexture(),
-                    screenPosition + new Vector2((int)GetTexture().Width / 2, (int)GetTexture().Height / 2), //位置
+                    this.GetOffset() + screenPosition + new Vector2((int)GetTexture().Width / 2, (int)GetTexture().Height / 2), //位置
                     new Microsoft.Xna.Framework.Rectangle(0, 0, (int)GetTexture().Width, (int)GetTexture().Height), //ソース
                     Microsoft.Xna.Framework.Color.White,
                     (float)(Math.PI) + 0, //回転(90度回す)
                     new Vector2((int)GetTexture().Width / 2, (int)GetTexture().Height / 2), //オフセット
                     1*camera.GetSize(), //スケール
-                    SpriteEffects.None, 0);
+                    SpriteEffects.None, 0.01f);
                 Game1.GetInstance().AddRenderedCount();
             }
         }

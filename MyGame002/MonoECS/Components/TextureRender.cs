@@ -27,6 +27,12 @@ namespace MyGame002.MonoECS.Components
             this.layer = layer;
             MakeTexture(texture, size);
         }
+        public TextureRender(Entity entity, Texture2D texture, Vector2 size, int layer = 0)
+        {
+            this.entity = entity;
+            this.layer = layer;
+            this.texture = texture;
+        }
         public void SetLayer(int layer)
         {
             this.layer = layer;
