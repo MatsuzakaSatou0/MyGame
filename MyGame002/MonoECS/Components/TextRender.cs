@@ -13,6 +13,7 @@ namespace MyGame002.MonoECS.Components
     {
         private float size = 0;
         private string text = "EMPTY";
+        private Vector2 offset = new Vector2();
         private Entity entity;
         private Microsoft.Xna.Framework.Color color;
         public TextRender(Entity entity,float size,string text,Microsoft.Xna.Framework.Color color)
@@ -25,6 +26,10 @@ namespace MyGame002.MonoECS.Components
         public void SetPosition(Vector2 position)
         {
             entity.SetPosition(position);
+        }
+        public void SetOffset(Vector2 offset)
+        {
+            this.offset = offset;
         }
         public Vector2 GetSize()
         {
@@ -59,11 +64,11 @@ namespace MyGame002.MonoECS.Components
             foreach(var c in text) {
                 if (!Game1.GetInstance().GetFont().Characters.Contains(c))
                 {
-                    Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "BAD CHAR", GetEntity().GetPosition(), color, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 1);
+                    Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "BAD CHAR", GetEntity().GetPosition() + offset, color, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 1);
                     return;
                 }
              }
-            Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), text, GetEntity().GetPosition(),color, 0,new Vector2(0,0),size,Microsoft.Xna.Framework.Graphics.SpriteEffects.None,1);
+            Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), text, GetEntity().GetPosition()+offset, color, 0,new Vector2(0,0),size,Microsoft.Xna.Framework.Graphics.SpriteEffects.None,1);
         }
 
         public void Update(GameTime time)

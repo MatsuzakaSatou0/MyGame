@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyGame002.MonoECS.Components.PlayerController
+namespace MyGame002.MonoECS.Components
 {
     public class MousePlayerController:Component
     {
@@ -56,5 +56,10 @@ namespace MyGame002.MonoECS.Components.PlayerController
             beforeMouseY =  Mouse.GetState().Y;
             entity.SetPosition(new Vector2(mouseX, mouseY));
         }
+        public Vector2 GetMouseVelocity()
+        {
+            return new Vector2(beforeMouseX, beforeMouseY);
+        }
+
     }
 }

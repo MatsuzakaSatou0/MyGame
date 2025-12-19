@@ -63,7 +63,7 @@ namespace MyGame002.MyData
             foreach(TextureData textureData in data.Textures)
             {
                 //名前|Matデータ として追加
-                texture.Add(textureData.Name,Mat.FromStream(new MemoryStream(textureData.Data.ToByteArray()),ImreadModes.Color));
+                texture.Add(textureData.Name,Mat.FromStream(new MemoryStream(textureData.Data.ToByteArray()),ImreadModes.Unchanged));
             }
             //テクスチャを返す。
             return texture;

@@ -23,7 +23,7 @@ namespace MyGame002.MonoCV
                 return null;
             }
             //BGRをRGBに変換します。
-            matframe = matframe.CvtColor(ColorConversionCodes.BGR2RGB);
+            matframe = matframe.CvtColor(ColorConversionCodes.BGRA2RGBA);
             int i = 0;
             //データを初期化
             Color[] data = new Color[(int)((int)matframe.Size().Width * (int)matframe.Size().Height)];
@@ -32,9 +32,9 @@ namespace MyGame002.MonoCV
                 for (int x = 0; x < (int)matframe.Size().Width; x++)
                 {
                     //Cv2側の色を取得
-                    var col = matframe.At<Vec3b>((int)y, (int)x);
+                    var col = matframe.At<Vec4b>((int)y, (int)x);
                     //cv2の色を設定
-                    data[i] = new Color((int)col.Item0, (int)col.Item1, (int)col.Item2);
+                    data[i] = new Color((int)col.Item0, (int)col.Item1, (int)col.Item2,(int)col.Item3);
                     i++;
                 }
             }

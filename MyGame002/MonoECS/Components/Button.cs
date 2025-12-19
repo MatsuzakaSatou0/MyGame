@@ -23,7 +23,6 @@ namespace MyGame002.MonoECS.Components
             this.entity = entity;
             buttonSize = size;
         }
-
         public override void Draw(GameTime time)
         {
             if((Mouse.GetState().X <= entity.GetPosition().X || Mouse.GetState().Y <= entity.GetPosition().Y || Mouse.GetState().X >= entity.GetPosition().X+ buttonSize.X || Mouse.GetState().Y >= entity.GetPosition().Y+buttonSize.Y) == false)
