@@ -4,7 +4,11 @@ using Microsoft.Xna.Framework.Input;
 using MyGame002.MonoECS;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace MyGame002
 {
@@ -17,7 +21,7 @@ namespace MyGame002
             return _singleInstance;
         }
         //開発用モードのフラグ
-        private bool developmentMode = false;
+        private bool developmentMode = true;
         //スクリーンのサイズの比率
         private float screenSizeMultiplier = 1f;
         //グラフィック
@@ -32,7 +36,10 @@ namespace MyGame002
         private ProgramManager programManager;
         //ゲームのインターフェース
         GameBase gameBase;
+        //デバッグ表示用文字列
+        string debugString = "";
 
+        int renderedCount = 0;
 
         public Game1()
         {
@@ -53,6 +60,10 @@ namespace MyGame002
         {
             //始まったら
             base.BeginRun();
+            if (gameBase == null)
+            {
+                return;
+            }
             //マウスの描画をfalseにする。
             this.IsMouseVisible = false;
             //開発用モードがオンの場合
@@ -68,12 +79,21 @@ namespace MyGame002
                 component.Start();
             }
         }
+        public void PrintDebug(string text)
+        {
+            debugString += text;
+        }
+        public void AddRenderedCount()
+        {
+            renderedCount += 1;
+        }
 
         //MonoGame側の初期化（グラフィック側）
         protected override void Initialize()
         {
             //ウィンドウのタイトル
-            Window.Title = "2025年度 進級制作 MyGame 齊藤陽生";
+            //2025年度 進級制作 MyGame 齊藤陽生
+            Window.Title = "MyGame";
             //画面設定
             //ゲームのサイズ 16:9です。
             _graphics.PreferredBackBufferWidth = 640;
@@ -81,6 +101,12 @@ namespace MyGame002
             //グラフィック設定の変更を適応します。これを実行しないと変更されないです。
             _graphics.ApplyChanges();
             //ゲームベースの初期化
+            if(gameBase == null)
+            {
+                MessageBox.Show("プログラムが初期化されませんでした。Programsフォルダーに適切なプログラムがあることを確認してください。");
+                this.Exit();
+                return;
+            }
             gameBase.Initialize();
             base.Initialize();
         }
@@ -96,8 +122,12 @@ namespace MyGame002
 
         protected override void Update(GameTime gameTime)
         {
+            if (gameBase == null)
+            {
+                return;
+            }
             //止まっているか
-            if(isStopping)
+            if (isStopping)
             {
                 return;
             }
@@ -120,6 +150,16 @@ namespace MyGame002
 
         protected override void Draw(GameTime gameTime)
         {
+            //デバッグ表示初期化
+            if (developmentMode == true)
+            {
+                renderedCount = 0;
+                debugString = "";
+            }
+            if (gameBase == null)
+            {
+                return;
+            }
             //停止しているか
             if (isStopping)
             {
@@ -150,6 +190,12 @@ namespace MyGame002
             }
             //基礎クラスを描画
             base.Draw(gameTime);
+            if (developmentMode == true)
+            {
+                debugString += "GameTextureRendredCount:" + renderedCount.ToString();
+                //デバッグ表示
+                Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), debugString, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White, 0, new Vector2(0, 0), 0.85f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
+            }
             //スプライトバッチの描画終了
             Game1.GetInstance()._spriteBatch.End();
         }

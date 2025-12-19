@@ -8571,6 +8571,18 @@ with.
 				<Start>&#21364;</Start>
 				<End>&#21364;</End>
 			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#10;</Start>
+				<End>&#10;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#13;</Start>
+				<End>&#13;</End>
+			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#8734;</Start>
+				<End>&#8734;</End>
+			</CharacterRegion>
 		</CharacterRegions>
 	</Asset>
 </XnaContent>

@@ -18,6 +18,10 @@ namespace MyGame002.MonoCV
         /// </summary>
         public static Texture2D MatToTexture2D(Mat matframe)
         {
+            if(Game1.GetInstance().GraphicsDevice == null)
+            {
+                return null;
+            }
             //BGRをRGBに変換します。
             matframe = matframe.CvtColor(ColorConversionCodes.BGR2RGB);
             int i = 0;

@@ -30,6 +30,10 @@
         {
             label1 = new System.Windows.Forms.Label();
             windowSizeNum = new System.Windows.Forms.NumericUpDown();
+            CompressButton = new System.Windows.Forms.Button();
+            CompressFileInput = new System.Windows.Forms.TextBox();
+            textBox1 = new System.Windows.Forms.TextBox();
+            MonoFontGen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)windowSizeNum).BeginInit();
             SuspendLayout();
             // 
@@ -55,11 +59,49 @@
             windowSizeNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
             windowSizeNum.ValueChanged += windowSizeNum_ValueChanged;
             // 
+            // CompressButton
+            // 
+            CompressButton.Location = new System.Drawing.Point(12, 47);
+            CompressButton.Name = "CompressButton";
+            CompressButton.Size = new System.Drawing.Size(197, 23);
+            CompressButton.TabIndex = 3;
+            CompressButton.Text = "CompressFile";
+            CompressButton.UseVisualStyleBackColor = true;
+            CompressButton.Click += CompressButton_Click;
+            // 
+            // CompressFileInput
+            // 
+            CompressFileInput.Location = new System.Drawing.Point(12, 76);
+            CompressFileInput.Name = "CompressFileInput";
+            CompressFileInput.Size = new System.Drawing.Size(195, 23);
+            CompressFileInput.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new System.Drawing.Point(12, 105);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new System.Drawing.Size(195, 23);
+            textBox1.TabIndex = 5;
+            // 
+            // MonoFontGen
+            // 
+            MonoFontGen.Location = new System.Drawing.Point(12, 134);
+            MonoFontGen.Name = "MonoFontGen";
+            MonoFontGen.Size = new System.Drawing.Size(197, 23);
+            MonoFontGen.TabIndex = 6;
+            MonoFontGen.Text = "Fontのchar設定";
+            MonoFontGen.UseVisualStyleBackColor = true;
+            MonoFontGen.Click += MonoFontGen_Click;
+            // 
             // DevelopMenu
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(214, 44);
+            ClientSize = new System.Drawing.Size(219, 164);
+            Controls.Add(MonoFontGen);
+            Controls.Add(textBox1);
+            Controls.Add(CompressFileInput);
+            Controls.Add(CompressButton);
             Controls.Add(windowSizeNum);
             Controls.Add(label1);
             Name = "DevelopMenu";
@@ -72,5 +114,9 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown windowSizeNum;
+        private System.Windows.Forms.Button CompressButton;
+        private System.Windows.Forms.TextBox CompressFileInput;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button MonoFontGen;
     }
 }

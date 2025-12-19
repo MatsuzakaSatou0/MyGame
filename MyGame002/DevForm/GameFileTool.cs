@@ -28,7 +28,7 @@ namespace MyGame002.DevForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] texts = File.ReadAllLines(@"D:\MyGame\Bible\jpn-kougo.osis.xml");
+            string[] texts = File.ReadAllLines(@"font.txt");
             foreach(string text in texts)
             {
                 foreach (char c in text)

@@ -6,6 +6,11 @@ message GameResource {
     string name = 1;
     bytes data = 2;
   }
+  message AudioData {
+    string name = 1;
+    bytes data = 2;
+  }
 
   repeated TextureData textures = 1;
+  repeated AudioData audio = 2;
 }

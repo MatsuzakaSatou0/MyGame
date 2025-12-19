@@ -34,7 +34,7 @@ namespace MyGame002.MonoECS.Components
         }
         public virtual void OverCursor()
         {
-
+            
         }
     }
 }
