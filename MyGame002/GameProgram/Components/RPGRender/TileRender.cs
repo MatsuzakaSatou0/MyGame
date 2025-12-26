@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MyGame002.GameProgram.Components.Maps;
+using MyGame002.GameProgram.RPG;
 using MyGame002.MonoCV;
 using MyGame002.MonoECS;
 using MyGame002.MonoECS.Components;
@@ -18,11 +19,13 @@ namespace MyGame002.GameProgram.Components.RPGRender
 {
     public class TileRender:Component
     {
-        private Map map;
-        private Camera camera;
-        private MyDataFile mapFile = new MyDataFile();
-        private Entity entity;
-        private Vector2 tileSize = new Vector2(15,15);
+        protected Map map;
+        protected Camera camera;
+        protected MyDataFile mapFile = new MyDataFile();
+        protected Entity entity;
+
+        public List<TextureRender> renders = new List<TextureRender>();
+
         Mat noneTile;
         private bool initialized = false;
         public TileRender(Entity entity,Map map, MyDataFile mapFile,Camera camera)
@@ -32,27 +35,30 @@ namespace MyGame002.GameProgram.Components.RPGRender
             this.camera = camera;
             this.entity = entity;
         }
-
+        //この中でアロケートしないでください。
         public void Draw(GameTime time)
         {
             if (!initialized)
             {
-                //やること：マップのタイルを事前にアロケートできるようにして
-                noneTile = mapFile.TryGetTexture("None.png");
-                Cv2.Resize(noneTile, noneTile, new OpenCvSharp.Size(tileSize.X, tileSize.Y), 1.0, 1.0, InterpolationFlags.Cubic);
-                Cv2.Flip(noneTile, noneTile, FlipMode.XY);
-
-                Texture2D texture = TextureUtil.MatToTexture2D(noneTile);
-                foreach (Vector2 tile in map.tiles.Keys)
+                for (int x = 0; x < map.GetSize().X; x++)
                 {
-                    GameTextureRender gameTextureRender = new GameTextureRender(entity, camera, texture, tileSize);
-                    gameTextureRender.SetOffset(tile * tileSize);
-                    entity.AddComponent(gameTextureRender);
+                    for (int y = 0; y < map.GetSize().Y; y++) {
+                        GameTextureRender gameTextureRender = new GameTextureRender(entity, camera, map.tiles[new Vector2(x,y)].GetTile(), RPGSingleton.size, 0.01f);
+                        gameTextureRender.SetOffset(new Vector2(x,y) * RPGSingleton.size);
+                        entity.AddComponent(gameTextureRender);
+                        renders.Add(gameTextureRender);
+                    }
                 }
                 initialized = true;
             }
         }
-
+        public void ClearMap()
+        {
+            foreach(TextureRender render in renders)
+            {
+                entity.RemoveComponent(render);
+            }
+        }
         public void Start()
         {
             

@@ -56,7 +56,7 @@
             windowSizeNum.Name = "windowSizeNum";
             windowSizeNum.Size = new System.Drawing.Size(120, 23);
             windowSizeNum.TabIndex = 2;
-            windowSizeNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            windowSizeNum.Value = new decimal(new int[] { 2, 0, 0, 0 });
             windowSizeNum.ValueChanged += windowSizeNum_ValueChanged;
             // 
             // CompressButton

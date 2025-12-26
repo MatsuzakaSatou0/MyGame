@@ -38,6 +38,10 @@ namespace MyGame002.MonoUI.Panel
             this.entity = entity;
             this.isWindow = isWindow;
         }
+        public void SetWidth(int size)
+        {
+            windowWidth = size;
+        }
         public int GetTabIndex()
         {
             return tabIndex;
@@ -57,6 +61,11 @@ namespace MyGame002.MonoUI.Panel
             return button;
         }
 
+        public void SetNum(int num)
+        {
+            tabNum = num;
+        }
+
         public void Start()
         {
             
@@ -66,11 +75,11 @@ namespace MyGame002.MonoUI.Panel
             dataFile.Load("MonoUI.mdf");
             if (isWindow)
             {
-                var windowRenderComponent = new UIWindow(entity, dataFile.TryGetTexture("UIWindow.png"), new Vector2(windowWidth, 20),0);
+                var windowRenderComponent = new UIWindow(entity, dataFile.TryGetTexture("UIWindow.png"), new Vector2(windowWidth, 20),0.9f);
                 entity.AddComponent(windowRenderComponent);
                 windowRenderComponent.DisableAutoScale();
             }
-            windowBG = new TextureRender(entity, dataFile.TryGetTexture("UIWindow.png"), new Vector2(windowWidth, renderOffset.Y));
+            windowBG = new TextureRender(entity, dataFile.TryGetTexture("UIWindow.png"), new Vector2(windowWidth, renderOffset.Y),0.9f);
             windowBG.SetOffset(new Vector2(0, 20));
             entity.AddComponent(windowBG);
             initialized = true;
@@ -117,15 +126,14 @@ namespace MyGame002.MonoUI.Panel
             if(!initialized)
             {
                 Initialize();
-                DoTab();
             }
             if (isTab)
             {
                 if (tabIndex != beforeTabIndex)
                 {
                     Clear();
-                    DoTab();
                 }
+                DoTab();
                 beforeTabIndex = tabIndex;
                 foreach (TabButton button in tabButtons)
                 {

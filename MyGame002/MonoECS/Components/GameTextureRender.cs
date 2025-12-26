@@ -13,15 +13,17 @@ namespace MyGame002.MonoECS.Components
 {
     public class GameTextureRender : TextureRender
     {
+        private float layer = 0.01f;
         private Camera camera;
         public GameTextureRender(Entity entity,Camera camera, Mat texture, Vector2 size) : base(entity, texture, size)
         {
-             this.camera = camera;
+            this.camera = camera;
         }
 
-        public GameTextureRender(Entity entity, Camera camera, Texture2D texture, Vector2 size) : base(entity, texture, size)
+        public GameTextureRender(Entity entity, Camera camera, Texture2D texture, Vector2 size, float layer) : base(entity, texture, size)
         {
             this.camera = camera;
+            this.layer = layer;
         }
         public override void Draw(GameTime time)
         {
@@ -40,7 +42,7 @@ namespace MyGame002.MonoECS.Components
                     (float)(Math.PI) + 0, //回転(90度回す)
                     new Vector2((int)GetTexture().Width / 2, (int)GetTexture().Height / 2), //オフセット
                     1*camera.GetSize(), //スケール
-                    SpriteEffects.None, 0.01f);
+                    SpriteEffects.None, layer);
                 Game1.GetInstance().AddRenderedCount();
             }
         }

@@ -23,7 +23,7 @@ namespace MyGame002
         //開発用モードのフラグ
         private bool developmentMode = true;
         //スクリーンのサイズの比率
-        private float screenSizeMultiplier = 1f;
+        private float screenSizeMultiplier = 2.0f;
         //グラフィック
         public GraphicsDeviceManager _graphics;
         //スプライトのバッチ
@@ -96,8 +96,8 @@ namespace MyGame002
             Window.Title = "MyGame";
             //画面設定
             //ゲームのサイズ 16:9です。
-            _graphics.PreferredBackBufferWidth = 640;
-            _graphics.PreferredBackBufferHeight = 360;
+            _graphics.PreferredBackBufferWidth = 640*(int)screenSizeMultiplier;
+            _graphics.PreferredBackBufferHeight = 360 * (int)screenSizeMultiplier;
             //グラフィック設定の変更を適応します。これを実行しないと変更されないです。
             _graphics.ApplyChanges();
             //ゲームベースの初期化
@@ -107,7 +107,6 @@ namespace MyGame002
                 this.Exit();
                 return;
             }
-            gameBase.Initialize();
             base.Initialize();
         }
         //MonoGame側のコンテンツの読み込み

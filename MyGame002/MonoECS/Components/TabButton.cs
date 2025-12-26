@@ -16,6 +16,7 @@ namespace MyGame002.MonoECS.Components
         public TabButton(Entity entity, Mat texture, Vector2 size,int index) : base(entity, texture, size,index)
         {
             this.index = index;
+            this.SetLayer(0.91f);
         }
         public override void OverCursor()
         {

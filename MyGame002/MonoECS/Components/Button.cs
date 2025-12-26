@@ -19,7 +19,7 @@ namespace MyGame002.MonoECS.Components
         private Texture2D texture;
         Entity entity;
 
-        public Button(Entity entity, Mat texture, Vector2 size,int layer) : base(entity, texture, size,layer)
+        public Button(Entity entity, Mat texture, Vector2 size,float layer) : base(entity, texture, size,layer)
         {
             this.SetLayer(layer);
             this.entity = entity;

@@ -49,6 +49,17 @@ namespace MyGame002.MonoECS.Components
             position = (resizedEntityPosition + resizedCameraPosition);
             return true;
         }
+        public bool GetPositionFromCamera(Vector2 pos, out Vector2 position)
+        {
+            Vector2 resizedCameraPosition = (cameraPosition * size);
+            Vector2 resizedEntityPosition = (resizedCameraPosition + pos * size - (cameraSize)) * size + (cameraSize);
+            Vector2 resizedCameraSize = -resizedCameraPosition + (cameraSize);
+            resizedCameraPosition *= Game1.GetInstance().GetScreenSizeMulti();
+            resizedEntityPosition *= Game1.GetInstance().GetScreenSizeMulti();
+            resizedCameraSize *= Game1.GetInstance().GetScreenSizeMulti();
+            position = (resizedEntityPosition + resizedCameraPosition);
+            return true;
+        }
         public Vector2 GetPosition(Vector2 position)
         {
             return cameraPosition;

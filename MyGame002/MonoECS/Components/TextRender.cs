@@ -55,11 +55,11 @@ namespace MyGame002.MonoECS.Components
         {
             this.size = size;
         }
-        private Entity GetEntity()
+        public Entity GetEntity()
         {
             return this.entity;
         }
-        public void Draw(GameTime time)
+        public virtual void Draw(GameTime time)
         {
             foreach(var c in text) {
                 if (!Game1.GetInstance().GetFont().Characters.Contains(c))

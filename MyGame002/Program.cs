@@ -52,7 +52,7 @@ Load:
             }
         }
     }
-    Game1.GetInstance().Run();
+    //Game1.GetInstance().Run();
     goto End;
 }
 CustomBoot:

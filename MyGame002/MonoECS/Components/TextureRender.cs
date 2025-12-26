@@ -19,9 +19,9 @@ namespace MyGame002.MonoECS.Components
         private Vector2 offset = new Vector2(0, 0);
         private Texture2D texture;
         private bool autoScale = false;
-        private int layer = 0;
+        private float layer = 0;
         Entity entity;
-        public TextureRender(Entity entity,Mat texture,Vector2 size,int layer=0)
+        public TextureRender(Entity entity,Mat texture,Vector2 size,float layer=0)
         {
             this.entity = entity;
             this.layer = layer;
@@ -33,7 +33,7 @@ namespace MyGame002.MonoECS.Components
             this.layer = layer;
             this.texture = texture;
         }
-        public void SetLayer(int layer)
+        public void SetLayer(float layer)
         {
             this.layer = layer;
         }
