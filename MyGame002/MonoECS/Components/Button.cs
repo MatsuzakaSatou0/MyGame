@@ -17,6 +17,7 @@ namespace MyGame002.MonoECS.Components
     {
         private Vector2 buttonSize;
         private Texture2D texture;
+        private bool isOver = false;
         Entity entity;
 
         public Button(Entity entity, Mat texture, Vector2 size,float layer) : base(entity, texture, size,layer)
@@ -30,8 +31,17 @@ namespace MyGame002.MonoECS.Components
             if((Mouse.GetState().X <= this.GetOffset().X+entity.GetPosition().X || Mouse.GetState().Y <= this.GetOffset().Y + entity.GetPosition().Y || Mouse.GetState().X >= this.GetOffset().X + entity.GetPosition().X+ buttonSize.X || Mouse.GetState().Y >= this.GetOffset().Y + entity.GetPosition().Y+buttonSize.Y) == false)
             {
                 OverCursor();
+                isOver = true;
+            }
+            else
+            {
+                isOver = false;
             }
             base.Draw(time);
+        }
+        public bool IsOver()
+        {
+            return isOver;
         }
         public virtual void OverCursor()
         {

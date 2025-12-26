@@ -3,6 +3,7 @@ using MyGame002.GameProgram.Components.Doll;
 using MyGame002.GameProgram.Components.Maps;
 using MyGame002.GameProgram.DemoGame.Maps;
 using MyGame002.GameProgram.RPG;
+using MyGame002.GameProgram.Util;
 using MyGame002.MonoECS;
 using MyGame002.MyData;
 using System;
@@ -25,9 +26,8 @@ namespace MyGame002.GameProgram.DemoGame
         public override void Progress()
         {
             base.Progress();
-            Vector2 distanceVec = game.GetPlayerComponent().GetPosition() - debugPuppet.GetPosition();
-            float distance = MathF.Abs(distanceVec.X - distanceVec.Y);
-            if(distance < 1)
+            float distance = Vec2Util.Distance(debugPuppet.GetPosition(), game.GetPlayerComponent().GetPosition());
+            if (distance < 1)
             {
                 if (dgMap == null)
                 {

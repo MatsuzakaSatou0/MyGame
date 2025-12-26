@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MyGame002.GameProgram.Components;
+using MyGame002.GameProgram.Components.Dialogue;
 using MyGame002.GameProgram.Components.Doll;
 using MyGame002.GameProgram.Components.Maps;
 using MyGame002.GameProgram.Components.RPGPlayer;
@@ -13,6 +14,7 @@ using MyGame002.MyData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace MyGame002.GameProgram.RPG
 {
@@ -27,12 +29,14 @@ namespace MyGame002.GameProgram.RPG
 
         Entity player = new Entity();
         Entity logRender = new Entity();
+        Entity dialogueRender = new Entity();
 
         Entity tileRender = new Entity();
         Entity camera = new Entity();
         Entity mouseEntity = new Entity();
 
         GameLog gameLog;
+        SimpleDialogue dialogue;
 
         TileRender tileRenderComponent;
 
@@ -55,7 +59,7 @@ namespace MyGame002.GameProgram.RPG
             {
                 components.AddRange(tale.GetCharacterComponent());
             }
-            finalEntity.AddRange(new List<Entity>() { tileRender, camera, mouseEntity, player ,logRender});
+            finalEntity.AddRange(new List<Entity>() { tileRender, camera, mouseEntity, player ,logRender, dialogueRender });
             components.AddRange(EntityUtil.GetAllComponentsFromEntity(finalEntity.ToArray()));
             return components;
         }
@@ -71,6 +75,9 @@ namespace MyGame002.GameProgram.RPG
 
             gameLog = new GameLog(logRender, true, dataFile);
             logRender.AddComponent(gameLog);
+
+            dialogue = new SimpleDialogue(dialogueRender, true, dataFile);
+            dialogueRender.AddComponent(dialogue);
 
             player.AddComponent(new GamePlayer(player,camera.GetComponentAndConvert<RPGCamera>(),dataFile,"Player.png",map));
         }
@@ -97,11 +104,23 @@ namespace MyGame002.GameProgram.RPG
 
         public void Start()
         {
-            
+
+        }
+        public Entity GetGameLogEntity()
+        {
+            return dialogueRender;
         }
         public GameLog GetGameLog()
         {
             return gameLog;
+        }
+        public Entity GetDialogueEntity()
+        {
+            return dialogueRender;
+        }
+        public SimpleDialogue GetDialogue()
+        {
+            return dialogue;
         }
         public Camera GetCamera()
         {
@@ -130,7 +149,6 @@ namespace MyGame002.GameProgram.RPG
         }
         public void AddTime(int t)
         {
-            this.time += t;
             Logger.GetInstance().Log(this.time.ToString());
         }
     }

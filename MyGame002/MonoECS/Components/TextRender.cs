@@ -64,7 +64,7 @@ namespace MyGame002.MonoECS.Components
             foreach(var c in text) {
                 if (!Game1.GetInstance().GetFont().Characters.Contains(c))
                 {
-                    Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "BAD CHAR", GetEntity().GetPosition() + offset, color, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0.99f);
+                    Game1.GetInstance()._spriteBatch.DrawString(Game1.GetInstance().GetFont(), "BAD CHAR:"+((int)(c)).ToString(), GetEntity().GetPosition() + offset, color, 0, new Vector2(0, 0), size, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0.99f);
                     return;
                 }
              }

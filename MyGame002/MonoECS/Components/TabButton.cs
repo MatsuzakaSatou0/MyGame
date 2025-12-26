@@ -12,6 +12,7 @@ namespace MyGame002.MonoECS.Components
     public class TabButton : Button
     {
         private bool isOver = false;
+        private bool dead = false;
         private int index = 0;
         public TabButton(Entity entity, Mat texture, Vector2 size,int index) : base(entity, texture, size,index)
         {
@@ -22,6 +23,14 @@ namespace MyGame002.MonoECS.Components
         {
             base.OverCursor();
             isOver = true;
+        }
+        public bool IsDead()
+        {
+            return dead;
+        }
+        public void Kill()
+        {
+            dead = true;
         }
         public int GetIndex()
         {

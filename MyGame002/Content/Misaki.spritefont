@@ -8583,6 +8583,10 @@ with.
 				<Start>&#8734;</Start>
 				<End>&#8734;</End>
 			</CharacterRegion>
+			<CharacterRegion>
+				<Start>&#35598;</Start>
+				<End>&#35598;</End>
+			</CharacterRegion>
 		</CharacterRegions>
 	</Asset>
 </XnaContent>

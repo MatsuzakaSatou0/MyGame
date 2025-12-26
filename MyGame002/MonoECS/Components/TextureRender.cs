@@ -104,7 +104,7 @@ namespace MyGame002.MonoECS.Components
         }
         public void Dispose()
         {
-
+            texture.Dispose();
         }
     }
 }

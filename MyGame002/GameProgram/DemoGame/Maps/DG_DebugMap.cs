@@ -20,7 +20,7 @@ namespace MyGame002.GameProgram.DemoGame.Maps
             this.game = game;
             mapFile.Load("RPG.mdf");
             this.tale = new DebugMapTale(game, this, mapFile);
-            tile = new Tile("Triangle.png", mapFile);
+            tile = new Tile("Concrete.png", mapFile);
             for (int x = 0; x <= 50; x++)
             {
                 for (int y = 0; y <= 50; y++)

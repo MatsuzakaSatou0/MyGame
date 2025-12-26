@@ -1,18 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using MyGame002.MonoECS;
-using MyGame002.MonoECS.Components;
 using MyGame002.MonoUI.Panel;
 using MyGame002.MyData;
-using OpenCvSharp;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Assimp.Metadata;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-
 namespace MyGame002.GameProgram.Log
 {
     public class GameLog:UIPanel
@@ -51,9 +41,12 @@ namespace MyGame002.GameProgram.Log
             switch (GetTabIndex())
             {
                 case 0:
-                    foreach(string text in log)
+                    for (int i = 1; i < 17; i++)
                     {
-                        AddTextComponent(text,Color.White);
+                        if (0 <= (log.Count - i) && log.Count != 0)
+                        {
+                            AddTextComponent(log[(log.Count - i)], Color.White);
+                        }
                     }
                     break;
                 case 1:

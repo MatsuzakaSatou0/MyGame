@@ -15,10 +15,6 @@ namespace MyGame002.MonoECS.Components
     {
         private float layer = 0.01f;
         private Camera camera;
-        public GameTextureRender(Entity entity,Camera camera, Mat texture, Vector2 size) : base(entity, texture, size)
-        {
-            this.camera = camera;
-        }
 
         public GameTextureRender(Entity entity, Camera camera, Texture2D texture, Vector2 size, float layer) : base(entity, texture, size)
         {

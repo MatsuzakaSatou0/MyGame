@@ -21,9 +21,9 @@ namespace MyGame002.GameProgram.DemoGame.Maps
             mapFile.Load("RPG.mdf");
             this.tale = new DG_MapTale(game, this,mapFile);
             tile = new Tile("Concrete.png", mapFile);
-            for (int x = 0; x <= 5; x++)
+            for (int x = 0; x < 5; x++)
             {
-                for (int y = 0; y <= 5; y++)
+                for (int y = 0; y < 5; y++)
                 {
                     tiles.Add(new Vector2(x, y), tile);
                 }
